@@ -46,5 +46,11 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 
 ## V. Contacts
 
-scientist0205@snu.ac.kr
+서울대병원 의생명정보학 연구실
+
+정경훈, scientist0205@snu.ac.kr 
+
+이동주, ehdwn8242@snu.ac.kr 
+
+양선아, tjsdk3105@gmail.com
 
