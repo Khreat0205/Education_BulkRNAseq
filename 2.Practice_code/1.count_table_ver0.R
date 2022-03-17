@@ -15,7 +15,12 @@ gctfh_info <- function(x){
 
 }
 #### 추출된 그룹 정보를 테이블로 형성
-gct_group_table <- data.table(t(sapply(gct_sample,gctfh_info)),keep.rownames = T)
+sample_to_info <- sapply(gct_sample,gctfh_info)
+head(sample_to_info)
+
+gct_group_table <- data.table(t(sample_to_info),keep.rownames = T)
+head(gct_group_table)
+
 colnames(gct_group_table) <- c("sample","celltype","mouse","day")
 
 #### CD90high GCTfh-like cell 샘플들의 파일 경로 불러오기 및 파일명 기반 샘플 이름 지정
@@ -57,13 +62,14 @@ for(i in 1:nrow(group_table)){
 
 
 #### 최소 10 이상 count 된 유전자만 남김
-filtered_row <- rowSums(count_table[,-1] >= 10) > 1
+filtered_row <- rowSums(count_table[,-1] >= 10) > 0
 filtered_count_table <- count_table[filtered_row,]
 
 
 #### 유전자 이름이 ensembl gene id로 되어 있어 MGI symbol로 변환
 ## ensembl
-datasets <- listDatasets(ensembl)
+ensembl <- useEnsembl(biomart = "ensembl")
+datasets <- listDatasets("ensembl")
 ensembl <- useDataset(dataset = "mmusculus_gene_ensembl", mart = ensembl)
 
 G_list <- getBM(filters ="ensembl_gene_id", attributes= c("ensembl_gene_id","mgi_symbol"),values=filtered_count_table$ensembl_gene_id,mart= ensembl)
@@ -75,3 +81,4 @@ fwrite(group_table,file = "1.Data/group_table.txt",sep="\t")
 ## 파일 저장: count 테이블
 fwrite(final_count_table,file = "1.Data/count_table.txt",sep="\t")
 
+getwd()

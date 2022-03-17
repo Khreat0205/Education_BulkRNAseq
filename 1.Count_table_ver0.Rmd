@@ -1,20 +1,17 @@
 ---
-title: "0.Creating Count table (matrix) from *.count.txt"
-output: Count table / group table files
+title: "1.Creating Count table (matrix) from *.count.txt"
+output: html_notebook
+---
 
+GEO 데이터셋의 raw count.txt 데이터 중 관심 샘플들의 데이터를 합치고, 필터링.
+파일명에 따른 샘플 정보 추출 및 그룹 테이블 생성
 
 ```{r}
 library(data.table)
-
 library(biomaRt)
 ```
 
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 
 
 CD90neg/lo GCTfh cell 샘플들의 파일 경로 불러오기 및 파일명 기반 샘플 이름 지정
@@ -23,10 +20,21 @@ setwd("/Users/khjeong2/Documents/GitHub/Education_BulkRNAseq")
 gctfh_files_path <- list.files("1.Data/raw_count_txt/GCTFH/",full.names = T)
 gctfh_files <- list.files("1.Data/raw_count_txt/GCTFH/",full.names = F)
 gct_sample <- gsub("^.*_D|.count.txt","",gctfh_files)
+```
+
+```{r}
 head(gctfh_files_path)
+```
+
+```{r}
 head(gctfh_files)
+```
+
+```{r}
 head(gct_sample)
 ```
+
+
 
 샘플 이름에 따른 그룹 정보 추출 함수 작성
 ```{r}
@@ -44,7 +52,10 @@ gctfh_info <- function(x){
 ```{r}
 sample_to_info <- sapply(gct_sample,gctfh_info)
 head(sample_to_info)
+```
 
+
+```{r}
 gct_group_table <- data.table(t(sample_to_info),keep.rownames = T)
 head(gct_group_table)
 ```
@@ -78,7 +89,7 @@ tfh_info <- function(x){
 ```{r}
 tfhlike_group_table <- data.table(t(sapply(tfh_sample,tfh_info)),keep.rownames = T)
 colnames(tfhlike_group_table) <- c("sample","celltype","mouse","day")
-
+head(tfhlike_group_table)
 ```
 
 
@@ -102,7 +113,7 @@ head(group_table)
 
 
 
-#### group table에 삽입된 파일 경로를 하나씩 읽어 합치는 반복문
+group table에 삽입된 파일 경로를 하나씩 읽어 합치는 반복문
 ```{r}
 for(i in 1:nrow(group_table)){
   counts <- fread(group_table$file_path[i],header=F)
@@ -122,7 +133,7 @@ head(count_table)
 
 
 
-#### 최소 10 이상 count 된 유전자만 남김
+최소 10 이상 count 된 유전자만 남김
 ```{r}
 filtered_row <- rowSums(count_table[,-1] >= 10) > 0
 head(filtered_row)
@@ -132,11 +143,15 @@ head(filtered_count_table)
 
 
 
-#### 유전자 이름이 ensembl gene id로 되어 있어 MGI symbol로 변환
-## ensembl
+유전자 이름이 ensembl gene id로 되어 있어 MGI symbol로 변환
+ensembl
 ```{r}
+ensembl <- useEnsembl("ensembl",mirror="asia")
 ensembl <- useDataset(dataset = "mmusculus_gene_ensembl", mart = ensembl)
-head(ensembl)
+```
+
+```{r}
+head(attributes(ensembl))
 ```
 
 
