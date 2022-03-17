@@ -57,7 +57,7 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 
 ## V. Contacts
 
-서울대병원 의생명정보학 연구실
+서울대병원 의생명정보학 연구실 ([링크](https://sites.google.com/view/snuh-bmi-lab/home))
 
 정경훈, scientist0205@snu.ac.kr 
 
