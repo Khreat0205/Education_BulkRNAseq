@@ -1,8 +1,11 @@
 # Set working directory
+# If you use R project file, you would not need this step.
 setwd("C:/Users/user/Documents/GitHub/Education_BulkRNAseq/")
 
 # Which library to use
 library("DESeq2")
+library("ggplot2")
+library("ComplexHeatmap")
 
 # Input : 1.count data
 cts <- read.table("1.Data/count_table.txt", sep = "\t", header = T)
@@ -16,8 +19,37 @@ colnames(counts) <- coldata$sample
 ## Set as factor
 coldata$celltype <- factor(coldata$celltype)
 coldata$mouse <- factor(coldata$mouse)
+coldata$day <- factor(coldata$day)
+
 
 # PCA Plot
+## normalize data & remove batch effects
+dds <- DESeqDataSetFromMatrix(countData = round(counts), colData = coldata, design = ~ day+celltype+day:celltype)
+dds <- DESeq(dds)
+## draw PCA plot
+pcaData <- plotPCA(vst(dds, blind = F), intgroup=c('day','celltype'), returnData=TRUE)
+pcaPercentVar <- round(100 * attr(pcaData, "percentVar"))
+pcaPlot <- ggplot(pcaData, aes(PC1, PC2, color=day, shape=celltype)) +
+            geom_point(size=3) +
+            xlab(paste0("PC1: ",pcaPercentVar[1],"% variance")) +
+            ylab(paste0("PC2: ",pcaPercentVar[2],"% variance")) +
+            coord_fixed()+
+            theme_classic()
+pcaPlot
+
+# Correlation plot
+## correlation
+corData <- cor(counts, method = 'pearson')
+## draw plot
+corPlot <- Heatmap(matrix = corData,
+                   cell_fun = function(j, i, x, y, width, height, fill) {
+                     if(!is.na(corData[i,j]))
+                       grid.text(round(corData[i, j],digits = 2), x, y, gp = gpar(fontsize = 10))
+                   },
+                   cluster_rows = T, cluster_columns = T,
+                   heatmap_legend_param = list(title="Correlation"),
+                   rect_gp = gpar(col = 'white', lwd = 3))
+draw(corPlot)
 
 # DEG analysis
 ## Divide data by day
@@ -50,3 +82,4 @@ for (i in 1:4){
   ## Order by adjusted p value
   sig_gene[[i]] <- sig_gene[[i]][order(sig_gene[[i]]$padj),]
 }
+
