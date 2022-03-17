@@ -40,11 +40,13 @@ for (i in 1:4){
                                      design = ~ mouse + celltype)
   mcols(dds[[i]]) <- data.frame(mcols(dds[[i]]), featuredata)
   ## Note on factor levels
-  dds[[i]]$celltype <- relevel(dds[[i]]$celltype, ref="GCTFH")
+  dds[[i]]$celltype <- relevel(dds[[i]]$celltype, ref="TFHlike")
   ## Run DESeq2
   dds[[i]] <- DESeq(dds[[i]])
   ## See results
   res[[i]] <- results(dds[[i]], saveCols=1:2)
   ## Significant gene (cutoff : FC>=2 % adjusted p value<0.01)
   sig_gene[[i]] <- res[[i]][which(abs(res[[i]]$log2FoldChange)>=1 & res[[i]]$padj<0.01),]
-  }
+  ## Order by adjusted p value
+  sig_gene[[i]] <- sig_gene[[i]][order(sig_gene[[i]]$padj),]
+}
