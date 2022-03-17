@@ -1,5 +1,9 @@
 # Education_BulkRNAseq
-목표:
+### 교육 목표
+
+GEO 플랫폼에서 RNA seq count 데이터를 획득, 이를 처리 및 활용하여 하위 분석(DEG 분석, GO 분석, 시각화)을 수행할 수 있다.
+
+
 
 ## I. 분석 예제 데이터
 
@@ -7,7 +11,14 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 
 논문: Primary germinal center-resident T follicular helper cells are a physiologically distinct subset of CXCR5hiPD-1hi T follicular helper cells. Yeh et al. *Immunity*. 2022. ([링크](https://www.sciencedirect.com/science/article/pii/S1074761321005513))
 
-다운 받아야할 파일: R 설치 파일, Rstudio 설치 파일, Count matrix, tar/gz 압축 풀수 있는 반디집, 패키지 설치 스크립트 (?)
+
+
+### 해당 GEO series 중 활용할 데이터
+
+각 시기(Day 8,16,12,16,24) 별 동일한 mouse (3마리) 에서 채취한 두가지 세포 타입 sorting 후, RNA sequencing data
+
+- GCTFH cell (12): Primary germinal center-resident T follicular helper cell ()
+- TFH-like cell (12): T follicular helper like cell
 
 
 
