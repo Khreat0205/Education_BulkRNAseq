@@ -6,7 +6,9 @@ library("DESeq2")
 
 # Input : 1.count data
 cts <- read.table("1.Data/count_table.txt", sep = "\t", header = T)
+## Raw count data per sample
 counts <- cts[,-c(1,2)]
+## Ensemble & Gene symbol information
 featuredata <- cts[,c(1,2)]
 
 # Input : 2.coldata
@@ -18,6 +20,7 @@ coldata$celltype <- factor(coldata$celltype)
 coldata$mouse <- factor(coldata$mouse)
 
 # PCA Plot
+## Sunah
 
 # DEG analysis
 ## Divide data by day
@@ -30,16 +33,23 @@ coldata_list <- list(day8 = coldata[grepl("^08", coldata$sample),],
                      day16 = coldata[grepl("^16", coldata$sample),],
                      day24 = coldata[grepl("^24", coldata$sample),])
 
+## Before for loop, assign empty list
 dds <- list()
 res <- list()
 sig_gene <- list()
+sig_gene_bypadj <- list()
+sig_gene_byFC <- list()
+
+## Run for loop 
 for (i in 1:4){
   ## Make DESeq2 dataset
   dds[[i]] <- DESeqDataSetFromMatrix(countData = counts_list[[i]],
                                      colData = coldata_list[[i]],
+                                     ## correcting for effect of mouse + DEG between celltype
                                      design = ~ mouse + celltype)
+  ## Add metadata column (in this case, gene name)
   mcols(dds[[i]]) <- data.frame(mcols(dds[[i]]), featuredata)
-  ## Note on factor levels
+  ## Note on factor levels (which condition to use as reference) (in this case, FC=GCTFH/TFHlike)
   dds[[i]]$celltype <- relevel(dds[[i]]$celltype, ref="TFHlike")
   ## Run DESeq2
   dds[[i]] <- DESeq(dds[[i]])
@@ -47,6 +57,8 @@ for (i in 1:4){
   res[[i]] <- results(dds[[i]], saveCols=1:2)
   ## Significant gene (cutoff : FC>=2 % adjusted p value<0.01)
   sig_gene[[i]] <- res[[i]][which(abs(res[[i]]$log2FoldChange)>=1 & res[[i]]$padj<0.01),]
-  ## Order by adjusted p value
-  sig_gene[[i]] <- sig_gene[[i]][order(sig_gene[[i]]$padj),]
+  ## Order by adjusted p value (low to high)
+  sig_gene_bypadj[[i]] <- sig_gene[[i]][order(sig_gene[[i]]$padj),]
+  ## Order by log2FC (high to low)
+  sig_gene_byFC[[i]] <- sig_gene[[i]][order(abs(sig_gene[[i]]$log2FoldChange),decreasing=T),]
 }
