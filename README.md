@@ -39,10 +39,12 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 1. 사전 다운로드
    1. 이 git을 압축파일로 다운로드 (아래그림 참조)
       1. ![download](png/download.png)
-2. 사전 설치 필요: 다운로드 받은 압축파일의 `0.Pre-install`에 위치한 파일 활용하여 설치
+2. 사전 설치 필요: 다운로드 받은 압축파일의 `0.Pre-install`에 위치한 파일 활용하여 아래 순서대로 설치
    1. R
    2. Rstudio
-   3. R packages (DESeq2, BiocManager,data.table, biomaRt)
+   3. R packages 설치 (아래그림 참조)
+      1. ![download](png/installPackages.png)
+      2. 위 그림의 3번과 4번 과정을 모든 코드 행(row)에 대하여 반복 진행
 
 
 
