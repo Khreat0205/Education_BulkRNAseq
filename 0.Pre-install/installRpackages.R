@@ -1,9 +1,8 @@
 install.packages("data.table")
 install.packages("BiocManager")
-install.packages('rmarkdown')
-install.packages('tinytex')
-ensembl <- useEnsembl("ensembl")
-?useEnsembl()
+install.packages("ggplot2")
+
 BiocManager::install("biomaRt")
 BiocManager::install("DESeq2")
+BiocManager::install("ComplexHeatmap")
 
