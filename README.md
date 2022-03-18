@@ -1,4 +1,4 @@
-# Education_BulkRNAseq
+# Education session: Bulk RNA seq
 ### 교육 목표
 
 GEO 플랫폼에서 RNA seq count 데이터를 획득, 이를 처리 및 활용하여 하위 분석(DEG 분석, GO 분석, 시각화)을 수행할 수 있다.
@@ -17,8 +17,10 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 
 각 시기(Day 8,16,12,16,24) 별 동일한 mouse (3마리) 에서 채취한 두가지 세포 타입 sorting 후, RNA sequencing data
 
-- GCTFH cell (12): Primary germinal center-resident T follicular helper cell ()
+- GCTFH cell (12): Primary germinal center-resident T follicular helper cell
 - TFH-like cell (12): T follicular helper like cell
+
+위 두 세포 타입 간 **유전자 발현량 차이, 시각화 및 Gene ontology 분석** 진행
 
 
 
