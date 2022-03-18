@@ -15,7 +15,7 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 
 ### 해당 GEO series 중 활용할 데이터
 
-각 시기(Day 8,16,12,16,24) 별 동일한 mouse (3마리) 에서 채취한 두가지 세포 타입 sorting 후, RNA sequencing data
+각 시기(Day 8,12,16,24) 별 동일한 mouse (3마리) 에서 채취한 두가지 세포 타입 sorting 후, RNA sequencing data
 
 - GCTFH cell (12): Primary germinal center-resident T follicular helper cell
 - TFH-like cell (12): T follicular helper like cell
