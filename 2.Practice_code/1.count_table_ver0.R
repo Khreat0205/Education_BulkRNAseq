@@ -4,6 +4,7 @@ library(biomaRt)
 gctfh_files_path <- list.files("1.Data/raw_count_txt/GCTFH/",full.names = T)
 gctfh_files <- list.files("1.Data/raw_count_txt/GCTFH/",full.names = F)
 gct_sample <- gsub("^.*_D|.count.txt","",gctfh_files)
+
 #### 샘플 이름에 따른 그룹 정보 추출
 gctfh_info <- function(x){
   sample_celltype <- "GCTFH"
@@ -27,6 +28,7 @@ colnames(gct_group_table) <- c("sample","celltype","mouse","day")
 tfh_files_path <- list.files("1.Data/raw_count_txt/TFHlike//",full.names=T)
 tfh_files <- list.files("1.Data/raw_count_txt/TFHlike//")
 tfh_sample <- gsub("^.*_D|.count.txt","",tfh_files)
+
 #### 샘플 이름에 따른 그룹 정보 추출
 tfh_info <- function(x){
   sample_celltype <- "TFHlike"
@@ -35,6 +37,7 @@ tfh_info <- function(x){
   result <- c(sample_celltype,sample_number,sample_day)
   return(result)
 }
+
 #### 추출된 그룹 정보를 테이블로 형성
 tfhlike_group_table <- data.table(t(sapply(tfh_sample,tfh_info)),keep.rownames = T)
 colnames(tfhlike_group_table) <- c("sample","celltype","mouse","day")
@@ -81,4 +84,3 @@ fwrite(group_table,file = "1.Data/group_table.txt",sep="\t")
 ## 파일 저장: count 테이블
 fwrite(final_count_table,file = "1.Data/count_table.txt",sep="\t")
 
-getwd()

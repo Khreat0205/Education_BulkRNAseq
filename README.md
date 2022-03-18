@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: ./png
+---
+
 # Education_BulkRNAseq
 ### 교육 목표
 
@@ -34,12 +38,15 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 
 ## III. 실습 전 준비사항
 
-1. 사전 설치 필요: 0.Pre-install 폴더 내 파일 활용하여 설치
+1. 사전 다운로드
+   1. 이 git을 압축파일로 다운로드 (아래그림 참조)
+      1. ![download](png/download.png)
+2. 사전 설치 필요: 다운로드 받은 압축파일의 `0.Pre-install`에 위치한 파일 활용하여 설치
    1. R
    2. Rstudio
    3. R packages (DESeq2, BiocManager,data.table, biomaRt)
-2. 사전 다운로드
-   1. 이 git을 압축파일로 다운로드 하거나, 링크(드랍박스)에서 다운로드
+
+
 
 
 
