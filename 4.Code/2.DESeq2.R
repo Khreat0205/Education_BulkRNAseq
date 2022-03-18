@@ -98,3 +98,6 @@ for (i in 1:4){
   sig_gene_byFC[[i]] <- sig_gene[[i]][order(abs(sig_gene[[i]]$log2FoldChange),decreasing=T),]
 }
 
+saveRDS(dds, file="3.Results/deseqdatset.rds")
+saveRDS(res, file="3.Results/result.rds")
+saveRDS(sig_gene, file="3.Results/significant_gene.rds")
