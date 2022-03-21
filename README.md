@@ -23,7 +23,7 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 
 ### 해당 GEO series 중 활용할 데이터
 
-각 시기(Day 8,12,16,24) 별 동일한 mouse (3마리) 에서 채취한 두가지 세포 타입 sorting 후, RNA sequencing data
+각 시기 (Day 8,12,16,24) 별 동일한 mouse (3마리) 에서 채취한 두가지 세포 타입 sorting 후, RNA sequencing data
 
 - GCTFH cell (12): Primary germinal center-resident T follicular helper cell
 - TFH-like cell (12): T follicular helper like cell
@@ -47,10 +47,11 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 1. 사전 다운로드
    1. 이 git을 압축파일로 다운로드 (아래그림 참조)
       1. ![download](png/download.png)
-2. 사전 설치 필요: 다운로드 받은 압축파일의 `0.Pre-install`에 위치한 파일 활용하여 아래 순서대로 설치
-   1. R
-   2. Rstudio
-   3. R packages 설치 (아래그림 참조)
+2. 사전 설치 필요:  아래 순서대로 설치 
+   1. R: 다운로드 받은 압축파일의 `0.Pre-install/1_R/`에 위치
+   2. Rstudio: 아래 링크에서 직접 다운로드하여 설치 
+      1. [링크](https://www.rstudio.com/products/rstudio/download/#download): 운영체제 (Mac or Windows) 에 맞는 Rstudio Desktop (free) 설치
+   3. R packages 설치 (아래그림 참조):  `0.Pre-install/installRpackages.R` 스크립트 활용
       1. ![download](png/installPackages.png)
       2. 위 그림의 3번과 4번 과정을 모든 코드 행(row)에 대하여 반복 진행
 

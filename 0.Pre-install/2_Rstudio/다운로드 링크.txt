@@ -1,4 +1,5 @@
-
+Github 파일 업로드 용량 제한으로 인해 링크로 대체합니다.
+아래 링크에서 다운로드 가능합니다.
 https://www.rstudio.com/products/rstudio/download/#download
 
 - 운영체제 (Mac or Windows) 에 맞는 Rstudio Desktop (free) 설치
