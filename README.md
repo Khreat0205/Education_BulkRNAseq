@@ -1,7 +1,15 @@
-# Education session: Bulk RNA seq
+# Educational session: Bulk RNA seq
+### Abstracts
+
+In current immune research, RNA sequencing has established itself as an essential technology for establishing, verifying, and refining hypotheses. Data-based hypothesis establishment and validation are essential as RNA sequencing data accumulation is increasing exponentially. Therefore, this educational session is intended to learn how to acquire, process, and utilize data related to research topics using Gene expression Omnibus (GEO), a public functional genomics data repository including RNA sequencing data. Throughout this education session, RNA sequencing data used in actual immune research will be obtained, and learn about how to conduct differentially expressed gene (DEG) analysis between the interested case group and the control group and visualization of results. In addition, we will introduce the concept of gene ontology and related tools, and learn gene ontology analysis for significant or interesting genes.
+
+
+
 ### 교육 목표
 
 GEO 플랫폼에서 RNA seq count 데이터를 획득, 이를 처리 및 활용하여 하위 분석(DEG 분석, GO 분석, 시각화)을 수행할 수 있다.
+
+
 
 
 
