@@ -25,9 +25,9 @@ coldata$day <- factor(coldata$day)
 
 
 # PCA Plot
-<<<<<<< HEAD
+#<<<<<<< HEAD
 ## Sunah
-=======
+#=======
 ## normalize data & remove batch effects
 dds <- DESeqDataSetFromMatrix(countData = round(counts), colData = coldata, design = ~ day+celltype+day:celltype)
 dds <- DESeq(dds)
@@ -42,6 +42,8 @@ pcaPlot <- ggplot(pcaData, aes(PC1, PC2, color=day, shape=celltype)) +
             theme_classic()
 pcaPlot
 
+ggsave(pcaPlot, filename = "./3.Results/Visualization/PCA.pdf", dpi = 600)
+
 # Correlation plot
 ## correlation
 corData <- cor(counts, method = 'pearson')
@@ -54,8 +56,11 @@ corPlot <- Heatmap(matrix = corData,
                    cluster_rows = T, cluster_columns = T,
                    heatmap_legend_param = list(title="Correlation"),
                    rect_gp = gpar(col = 'white', lwd = 3))
+png(filename = './3.Results/Visualization/Correlation.png', width = 900, height = 600)
 draw(corPlot)
->>>>>>> ec698ff07c187fa7edbfc9ecd0d4ff263211d65a
+dev.off()
+
+#>>>>>>> ec698ff07c187fa7edbfc9ecd0d4ff263211d65a
 
 # DEG analysis
 ## Divide data by day
@@ -75,7 +80,7 @@ sig_gene <- list()
 sig_gene_bypadj <- list()
 sig_gene_byFC <- list()
 
-## Run for loop 
+## Run for loop
 for (i in 1:4){
   ## Make DESeq2 dataset
   dds[[i]] <- DESeqDataSetFromMatrix(countData = counts_list[[i]],
