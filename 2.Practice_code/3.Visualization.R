@@ -40,11 +40,12 @@ EnhancedVolcano(
                 #
                 # Explanation
                 #    - toptable : data-frame of test statistics
-                #    - lab : A column name in toptable containing variable names
+                #    - lab : A column in toptable containing variable names
                 #    - x : A column name in toptable containing log2 fold change
                 #    - y :  A column name in toptable containing p-value
                 #
                 # Tip
+                #    - The $ operator can be used to select a column
                 #    - You can use "colnames(x)" to see column names in data frame x.
 
                 toptable = ###,
@@ -62,6 +63,9 @@ EnhancedVolcano(
                 ylim = c(0, 15), # Limits of the y-axis
                 gridlines.minor = F,
                 legendPosition = 'none')
+
+
+
 
 # If this picture looks ok, let's use a for-loop to plot all 4 timepoints.
 # You can save plot with ggsave function in ggplot2 packages.
@@ -117,9 +121,8 @@ Tfh.related.countData <- countData[idx, ]
 # Set row names.
 rownames(Tfh.related.countData) <- Tfh.related.gene
 
-# Calculate log2 Fold change
-# Calculation should be log2(TFH / TFHLike) for each compare
 colnames(Tfh.related.countData)
+
 
 
 ################  TO-DO ###################
@@ -136,10 +139,11 @@ colnames(Tfh.related.countData)
 #     - log2(x) computes the logarithm of the given column in base 2.
 #           ex ) log2(10)
 
-colnames(Tfh.related.countData)
 log2FC.data <- log2(Tfh.related.countData[ ### ] / Tfh.related.countData[ ### ])
 
 ###############  TO-DO ###################
+
+
 
 
 # Set column names
