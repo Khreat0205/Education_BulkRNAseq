@@ -29,7 +29,9 @@ coldata$day <- factor(coldata$day)
 ## Sunah
 #=======
 ## normalize data & remove batch effects
-dds <- DESeqDataSetFromMatrix(countData = round(counts), colData = coldata, design = ~ day+celltype+day:celltype)
+dds <- DESeqDataSetFromMatrix(countData = round(counts),
+                              colData = coldata,
+                              design = ~ day+celltype+day:celltype)
 dds <- DESeq(dds)
 
 saveRDS(dds, file="3.Results/deseqdatset.rds")
@@ -38,8 +40,8 @@ saveRDS(dds, file="3.Results/deseqdatset.rds")
 ## draw PCA plot
 pcaData <- plotPCA(vst(dds, blind = F), intgroup=c('day','celltype'), returnData=TRUE)
 pcaPercentVar <- round(100 * attr(pcaData, "percentVar"))
-pcaPlot <- ggplot(pcaData, aes(PC1, PC2, color=day, shape=celltype)) +
-            geom_point(size=3) +
+pcaPlot <- ggplot(pcaData) +
+            geom_point(mapping = aes(PC1, PC2, color=day, shape=celltype), size=3) +
             xlab(paste0("PC1: ",pcaPercentVar[1],"% variance")) +
             ylab(paste0("PC2: ",pcaPercentVar[2],"% variance")) +
             coord_fixed()+
