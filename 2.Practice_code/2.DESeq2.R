@@ -88,11 +88,17 @@ sig_gene_byFC <- list()
 
 ## Run for loop
 for (i in 1:4){
-  ## Make DESeq2 dataset
-  dds[[i]] <- DESeqDataSetFromMatrix(countData = counts_list[[i]],
-                                     colData = coldata_list[[i]],
-                                     ## correcting for effect of mouse + DEG between celltype
+  ################  TO-DO ###################
+  # Make DESeq2 dataset
+  # Fill in which input to use as count data, and column data (metadata)
+  
+  dds[[i]] <- DESeqDataSetFromMatrix(countData =           [[i]],
+                                     colData =             [[i]],
+                                     ## correcting for effect of mouse + calculating DEG between celltype
                                      design = ~ mouse + celltype)
+  
+  ################  TO-DO ###################
+  
   ## Add metadata column (in this case, gene name)
   mcols(dds[[i]]) <- data.frame(mcols(dds[[i]]), featuredata)
   ## Note on factor levels (which condition to use as reference) (in this case, FC=GCTFH/TFHlike)
@@ -101,12 +107,22 @@ for (i in 1:4){
   dds[[i]] <- DESeq(dds[[i]])
   ## See results
   res[[i]] <- results(dds[[i]], saveCols=1:2)
-  ## Significant gene (cutoff : FC>=2 % adjusted p value<0.01)
+  ## Significant gene (cutoff : FC (Fold Change) >=2 % adjusted p value<0.01)
   sig_gene[[i]] <- res[[i]][which(abs(res[[i]]$log2FoldChange)>=1 & res[[i]]$padj<0.01),]
-  ## Order by adjusted p value (low to high)
-  sig_gene_bypadj[[i]] <- sig_gene[[i]][order(sig_gene[[i]]$padj),]
-  ## Order by log2FC (high to low)
+  ## Order by absolute value of log2FC (high to low)
   sig_gene_byFC[[i]] <- sig_gene[[i]][order(abs(sig_gene[[i]]$log2FoldChange),decreasing=T),]
+  
+  ################  TO-DO ###################
+  # As we have learned how to use "order" function by sorting by absolute value of log2FC,
+  # Let's sort significant genes by adjusted p value and assign as "sig_gene_bypadj"
+  # Tips
+  #   - order() returns row indices in a certain sorted manner
+  #   - adjusted p value is saved in "padj" column
+  #   - since the default paramter of order() is to sort in ascending order, you don't have to use any paramter in this situation
+  
+  sig_gene_bypadj[[i]] <- sig_gene[[i]][order(                  ),]
+  
+  ###############  TO-DO ###################
 }
 
 
