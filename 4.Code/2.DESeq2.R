@@ -11,7 +11,7 @@ library("ComplexHeatmap")
 cts <- read.table("1.Data/count_table.txt", sep = "\t", header = T)
 ## Raw count data per sample
 counts <- cts[,-c(1,2)]
-## Ensemble & Gene symbol information
+## Ensembl & Gene symbol information
 featuredata <- cts[,c(1,2)]
 
 # Input : 2.coldata
