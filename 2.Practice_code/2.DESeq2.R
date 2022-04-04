@@ -116,7 +116,7 @@ for (i in 1:4){
   #   - adjusted p value is saved in "padj" column
   #   - since the default paramter of order() is to sort in ascending order, you don't have to use any paramter in this situation
   
-  sig_gene_bypadj[[i]] <- sig_gene[[i]][order(                  ),]
+  sig_gene_bypadj[[i]] <- sig_gene[[i]][                   ]
   
   ###############  TO-DO ###################
 }
