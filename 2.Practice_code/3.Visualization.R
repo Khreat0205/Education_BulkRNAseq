@@ -61,6 +61,7 @@ EnhancedVolcano(
                 title = 'Day 8', # Title of the plot
                 subtitle = "Fold Change > 2, padj < 0.01", # Subtitle of the plot
                 ylim = c(0, 15), # Limits of the y-axis
+                pCutoffCol = 'padj',
                 gridlines.minor = F,
                 legendPosition = 'none')
 
@@ -82,6 +83,7 @@ for(i in 1:4){
                   title = exp.title[i],
                   subtitle = "Fold Change > 2, padj < 0.01",
                   ylim = c(0, 15),
+                  pCutoffCol = 'padj',
                   gridlines.minor = F,
                   legendPosition = 'none')
 
