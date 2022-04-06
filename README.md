@@ -84,7 +84,7 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 ## VI. 알려진 이슈 해결 방법
 
 1. Issue. 1
-   1. ![issue1](png/issue1.png)
+   1. ![issue1](png/Issue1.png)
 
 
 
