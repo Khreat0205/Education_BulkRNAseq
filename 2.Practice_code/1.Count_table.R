@@ -118,6 +118,9 @@ head(count_table)
 filtered_row <- rowSums(count_table[,-1] >= 10) > 0
 head(filtered_row)
 
+
+
+
 filtered_count_table <- count_table[filtered_row,]
 head(filtered_count_table)
 
