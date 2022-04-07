@@ -1,6 +1,6 @@
 # Set working directory
 # If you use R project file, you would not need this step.
-setwd("C:/Users/user/Documents/GitHub/Education_BulkRNAseq/")
+# setwd("C:/Users/user/Documents/GitHub/Education_BulkRNAseq/")
 
 # Which library to use
 library(ggplot2)
@@ -42,7 +42,7 @@ EnhancedVolcano(
                 #    - toptable : data-frame of test statistics
                 #    - lab : A column in toptable containing variable names
                 #    - x : A column name in toptable containing log2 fold change
-                #    - y :  A column name in toptable containing p-value
+                #    - y : A column name in toptable containing p-value
                 #
                 # Tip
                 #    - The $ operator can be used to select a column
@@ -123,8 +123,8 @@ Tfh.related.countData <- countData[idx, ]
 # Set row names.
 rownames(Tfh.related.countData) <- Tfh.related.gene
 
+head(Tfh.related.countData)
 colnames(Tfh.related.countData)
-
 
 
 ################  TO-DO ###################

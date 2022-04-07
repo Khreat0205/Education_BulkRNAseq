@@ -1,6 +1,6 @@
 # Set working directory
 # If you use R project file, you would not need this step.
-setwd("C:/Users/user/Documents/GitHub/Education_BulkRNAseq/")
+#setwd("C:/Users/user/Documents/GitHub/Education_BulkRNAseq/")
 
 # Which library to use
 library("DESeq2")
@@ -25,9 +25,6 @@ coldata$day <- factor(coldata$day)
 
 
 # PCA Plot
-#<<<<<<< HEAD
-## Sunah
-#=======
 ## normalize data & remove batch effects
 dds <- DESeqDataSetFromMatrix(countData = round(counts),
                               colData = coldata,
@@ -66,7 +63,6 @@ png(filename = './3.Results/Visualization/Correlation.png', width = 900, height 
 draw(corPlot)
 dev.off()
 
-#>>>>>>> ec698ff07c187fa7edbfc9ecd0d4ff263211d65a
 
 # DEG analysis
 ## Divide data by day
