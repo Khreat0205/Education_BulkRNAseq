@@ -1,6 +1,6 @@
 # Set working directory
 # If you use R project file, you would not need this step.
-#setwd("C:/Users/user/Documents/GitHub/Education_BulkRNAseq/")
+# setwd("C:/Users/user/Documents/GitHub/Education_BulkRNAseq/")
 
 # Which library to use
 library("DESeq2")
@@ -23,6 +23,9 @@ coldata$celltype <- factor(coldata$celltype)
 coldata$mouse <- factor(coldata$mouse)
 coldata$day <- factor(coldata$day)
 
+# View data
+head(counts)
+head(coldata)
 
 # PCA Plot
 ## normalize data & remove batch effects
