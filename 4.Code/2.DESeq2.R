@@ -101,10 +101,10 @@ dds[[1]] <- DESeq(dds[[1]])
 res[[1]] <- results(dds[[1]], saveCols=1:2)
 ### Significant gene (cutoff : FC>=2 % adjusted p value<0.01)
 sig_gene[[1]] <- res[[1]][which(abs(res[[1]]$log2FoldChange)>=1 & res[[1]]$padj<0.01),]
+### Order by absolute value of log2FC (high to low)
+sig_gene_byFC[[1]] <- sig_gene[[1]][order(abs(sig_gene[[1]]$log2FoldChange),decreasing=T),]
 ### Order by adjusted p value (low to high)
 sig_gene_bypadj[[1]] <- sig_gene[[1]][order(sig_gene[[1]]$padj),]
-### Order by log2FC (high to low)
-sig_gene_byFC[[1]] <- sig_gene[[1]][order(abs(sig_gene[[1]]$log2FoldChange),decreasing=T),]
 
 ## Run for loop
 for (i in 2:4){
@@ -116,8 +116,8 @@ for (i in 2:4){
   dds[[i]] <- DESeq(dds[[i]])
   res[[i]] <- results(dds[[i]], saveCols=1:2)
   sig_gene[[i]] <- res[[i]][which(abs(res[[i]]$log2FoldChange)>=1 & res[[i]]$padj<0.01),]
-  sig_gene_bypadj[[i]] <- sig_gene[[i]][order(sig_gene[[i]]$padj),]
   sig_gene_byFC[[i]] <- sig_gene[[i]][order(abs(sig_gene[[i]]$log2FoldChange),decreasing=T),]
+  sig_gene_bypadj[[i]] <- sig_gene[[i]][order(sig_gene[[i]]$padj),]
 }
 
 
