@@ -19,7 +19,7 @@ head(res)
 head(sig_gene)
 
 # Create directory for saving plots
-dir.create('3.Results/Visualization/')
+#dir.create('3.Results/Visualization/')
 
 
 
@@ -30,8 +30,10 @@ dir.create('3.Results/Visualization/')
 
 # Let's draw volcano plot of day 8 first
 # We will use the function named EnhancedVolcano in EnhancedVolcano package
-
 day8.res <- res[[1]] # GCTFH cell vs TFH-like cell at day 8
+head(day8.res)
+
+
 EnhancedVolcano(toptable = day8.res, # data-frame of test statistics
                 lab = day8.res$mgi_symbol, # column name in toptable containing variable names
                 x ='log2FoldChange', # A column name in toptable containing log2 fold change
@@ -104,6 +106,7 @@ rownames(Tfh.related.countData) <- Tfh.related.gene
 # Calculation should be log2(TFH / TFHLike) for each compare
 colnames(Tfh.related.countData)
 log2FC.data <- log2(Tfh.related.countData[,1:12] / Tfh.related.countData[,13:24])
+head(log2FC.data)
 
 # Set column names
 new.column.name <- paste0(rep(exp.title, each=3), '_', rep(c(1,2,3),4))
