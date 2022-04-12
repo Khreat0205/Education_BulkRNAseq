@@ -85,33 +85,31 @@ sig_gene <- list()
 sig_gene_bypadj <- list()
 sig_gene_byFC <- list()
 
-## Run for loop
-for (i in 1:4){
-  ################  TO-DO ###################
-  # Make DESeq2 dataset
+## First, Let's see Day 8
+################  TO-DO ###################
+### Make DESeq2 dataset
   # Fill in which input to use as count data, and column data (metadata)
   
-  dds[[i]] <- DESeqDataSetFromMatrix(countData =           [[i]],
-                                     colData =             [[i]],
-                                     ## correcting for effect of mouse + calculating DEG between celltype
-                                     design = ~ mouse + celltype)
+dds[[1]] <- DESeqDataSetFromMatrix(countData =           [[1]],
+                                   colData =             [[1]],
+                                   ## correcting for effect of mouse + calculating DEG between celltype
+                                   design = ~ mouse + celltype)
   
-  ################  TO-DO ###################
-  
-  ## Add metadata column (in this case, gene name)
-  mcols(dds[[i]]) <- data.frame(mcols(dds[[i]]), featuredata)
-  ## Note on factor levels (which condition to use as reference) (in this case, FC=GCTFH/TFHlike)
-  dds[[i]]$celltype <- relevel(dds[[i]]$celltype, ref="TFHlike")
-  ## Run DESeq2
-  dds[[i]] <- DESeq(dds[[i]])
-  ## See results
-  res[[i]] <- results(dds[[i]], saveCols=1:2)
-  ## Significant gene (cutoff : FC (Fold Change) >=2 % adjusted p value<0.01)
-  sig_gene[[i]] <- res[[i]][which(abs(res[[i]]$log2FoldChange)>=1 & res[[i]]$padj<0.01),]
-  ## Order by absolute value of log2FC (high to low)
-  sig_gene_byFC[[i]] <- sig_gene[[i]][order(abs(sig_gene[[i]]$log2FoldChange),decreasing=T),]
-  
-  ################  TO-DO ###################
+################  TO-DO ###################
+### Add metadata column (in this case, gene name)
+mcols(dds[[1]]) <- data.frame(mcols(dds[[1]]), featuredata)
+### Note on factor levels (which condition to use as reference) (in this case, FC=GCTFH/TFHlike)
+dds[[1]]$celltype <- relevel(dds[[1]]$celltype, ref="TFHlike")
+### Run DESeq2
+dds[[1]] <- DESeq(dds[[1]])
+### See results
+res[[1]] <- results(dds[[1]], saveCols=1:2)
+### Significant gene (cutoff : FC>=2 % adjusted p value<0.01)
+sig_gene[[1]] <- res[[1]][which(abs(res[[1]]$log2FoldChange)>=1 & res[[1]]$padj<0.01),]
+### Order by absolute value of log2FC (high to low)
+sig_gene_byFC[[1]] <- sig_gene[[1]][order(abs(sig_gene[[1]]$log2FoldChange),decreasing=T),]
+################  TO-DO ###################
+## Significant gene (cutoff : FC (Fold Change) >=2 % adjusted p value<0.01)
   # As we have learned how to use "order" function by sorting by absolute value of log2FC,
   # Let's sort significant genes by adjusted p value and assign as "sig_gene_bypadj"
   # Tips
@@ -119,9 +117,22 @@ for (i in 1:4){
   #   - adjusted p value is saved in "padj" column
   #   - since the default paramter of order() is to sort in ascending order, you don't have to use any paramter in this situation
   
-  sig_gene_bypadj[[i]] <- sig_gene[[i]][                   ]
+sig_gene_bypadj[[1]] <- sig_gene[[1]][                   ]
   
-  ###############  TO-DO ###################
+###############  TO-DO ###################
+
+## Run for loop
+for (i in 2:4){
+  dds[[i]] <- DESeqDataSetFromMatrix(countData = counts_list[[i]],
+                                     colData = coldata_list[[i]],
+                                     design = ~ mouse + celltype)
+  mcols(dds[[i]]) <- data.frame(mcols(dds[[i]]), featuredata)
+  dds[[i]]$celltype <- relevel(dds[[i]]$celltype, ref="TFHlike")
+  dds[[i]] <- DESeq(dds[[i]])
+  res[[i]] <- results(dds[[i]], saveCols=1:2)
+  sig_gene[[i]] <- res[[i]][which(abs(res[[i]]$log2FoldChange)>=1 & res[[i]]$padj<0.01),]
+  sig_gene_bypadj[[i]] <- sig_gene[[i]][order(sig_gene[[i]]$padj),]
+  sig_gene_byFC[[i]] <- sig_gene[[i]][order(abs(sig_gene[[i]]$log2FoldChange),decreasing=T),]
 }
 
 
