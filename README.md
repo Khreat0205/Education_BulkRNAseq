@@ -25,8 +25,8 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 
 각 시기 (Day 8,12,16,24) 마다 mouse (3마리) 에서 채취한 두가지 세포 타입 sorting 후, RNA sequencing data
 
-- GCTFH cell (12): Primary germinal center-resident T follicular helper cell
-- TFH-like cell (12): T follicular helper like cell
+- GCTFH cell (12): Primary germinal center-resident T follicular helper cell (CD90 negative/low T follicular helper cell)
+- GCTFH-like cell (12): Germinal center-resident T follicular helper like cell (CD90 high T follicular helper cell)
 
 위 두 세포 타입 간 **유전자 발현량 차이, 시각화 및 Gene ontology 분석** 진행
 
