@@ -85,6 +85,7 @@ GEO series dataset: [GSE147035](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?a
 
 1. Issue. 1
    1. ![issue1](png/Issue1.png)
-
+2. Issue. 1
+   1. ![issue2](png/Issue 2.png)
 
 
