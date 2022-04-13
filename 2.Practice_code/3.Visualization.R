@@ -42,7 +42,7 @@ EnhancedVolcano(
                 #
                 # Explanation
                 #    - toptable : data-frame of test statistics
-                #    - lab : A column in toptable containing variable names
+                #    - lab : A vector containing variable names
                 #    - x : A column name in toptable containing log2 fold change
                 #    - y : A column name in toptable containing p-value
                 #
@@ -51,7 +51,7 @@ EnhancedVolcano(
                 #    - You can use "colnames(x)" to see column names in data frame x.
 
                 toptable = ###,
-                lab = ### ,
+                lab = ###$### ,
                 x = ### ,
                 y = ### ,
 
@@ -144,17 +144,22 @@ colnames(Tfh.related.countData)
 #     - log2(x) computes the logarithm of the given column in base 2.
 #           ex ) log2(10)
 
-log2FC.data <- log2(Tfh.related.countData[ ### ] / Tfh.related.countData[ ### ])
+log2FC.data <- log2(Tfh.related.countData[ ##,## ] / Tfh.related.countData[ ##, ## ])
 
 ###############  TO-DO ###################
 
 head(log2FC.data)
 
 
+
 # Set column names
 exp.title <- c('Day8', 'Day12', 'Day16', 'Day24')
 new.column.name <- paste0(rep(exp.title, each=3), '_', rep(c(1,2,3),4))
 colnames(log2FC.data) <- new.column.name
+
+
+
+head(log2FC.data)
 
 # Set column split information. This will be used in next function
 column_split_info <- factor(rep(exp.title, each=3), levels = exp.title)
