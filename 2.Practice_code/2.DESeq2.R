@@ -49,10 +49,10 @@ coldata$celltype
 
 # PCA Plot
 ## Normalization & Batch correction
-dds <- DESeqDataSetFromMatrix(countData = counts, 
+dds <- DESeqDataSetFromMatrix(countData = round(counts), 
                               colData = coldata,
                               # correcting for effect of day (first value) + DEG between celltype (last value)
-                              design = ~ day+celltype)
+                              design = ~ day+celltype+day:celltype)
 dds <- DESeq(dds)
 
 saveRDS(dds, file="3.Results/deseqdatset.rds")
